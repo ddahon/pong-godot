@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://gf4ydnw0eec7"]
+
+[node name="Divider" type="Line2D"]
+points = PackedVector2Array(0, 0, 0, 1080)
+width = 1.0
+default_color = Color(0.233925, 0.233925, 0.233925, 1)
