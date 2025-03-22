@@ -12,6 +12,6 @@ func _physics_process(delta):
 	paddle.velocity.y = Input.get_axis(up_control, down_control) * speed
 
 
-func _on_left_border_body_entered(body: Node2D) -> void:
+func _on_score(body: Node2D) -> void:
 	score += 1
-	print_debug(score)
+	print_debug("%s: %s" % [name, score])

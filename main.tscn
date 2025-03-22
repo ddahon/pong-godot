@@ -33,4 +33,5 @@ position = Vector2(0, 1080)
 [node name="RightBorder" parent="." instance=ExtResource("5_lquwl")]
 position = Vector2(1920, 0)
 
-[connection signal="body_entered" from="LeftBorder" to="Player1" method="_on_left_border_body_entered"]
+[connection signal="body_entered" from="LeftBorder" to="Player2" method="_on_score"]
+[connection signal="body_entered" from="RightBorder" to="Player1" method="_on_score"]
