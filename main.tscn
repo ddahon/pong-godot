@@ -1,26 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://6ddaon0b7ru6"]
+[gd_scene load_steps=7 format=3 uid="uid://6ddaon0b7ru6"]
 
 [ext_resource type="Script" uid="uid://dsps1nqnt4in1" path="res://main.gd" id="1_qgcia"]
 [ext_resource type="PackedScene" uid="uid://yuq1bd57urfg" path="res://player.tscn" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://cw6gyp7u42wve" path="res://ball.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://cewp82iccsud7" path="res://wall.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://gf4ydnw0eec7" path="res://divider.tscn" id="2_7mycd"]
+[ext_resource type="PackedScene" uid="uid://d1pdcw6l4tuay" path="res://wall.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" uid="uid://cfv5474w3m1vy" path="res://arena_border.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://c2iykd4htkjh0" path="res://ball_spawner.tscn" id="6_7mycd"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_qgcia")
 
+[node name="Divider" parent="." instance=ExtResource("2_7mycd")]
+position = Vector2(960, 0)
+scale = Vector2(2, 1.5)
+
 [node name="Player1" parent="." instance=ExtResource("2_0xm2m")]
+scale = Vector2(2, 1.5)
 up_control = &"up_p1"
 down_control = &"down_p1"
 
 [node name="Player2" parent="." instance=ExtResource("2_0xm2m")]
-position = Vector2(1890, 0)
+position = Vector2(1860, 0)
+scale = Vector2(2, 1.5)
 up_control = &"up_p2"
 down_control = &"down_p2"
-
-[node name="Ball" parent="." instance=ExtResource("3_h2yge")]
-position = Vector2(815, 158)
 
 [node name="TopWall" parent="." instance=ExtResource("4_1bvp3")]
 
 [node name="BottomWall" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(0, 1080)
+
+[node name="LeftBorder" parent="." instance=ExtResource("5_lquwl")]
+
+[node name="RightBorder" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(1920, 0)
+
+[node name="BallSpawner" parent="." instance=ExtResource("6_7mycd")]
+
+[connection signal="body_entered" from="LeftBorder" to="Player2" method="_on_score"]
+[connection signal="body_entered" from="LeftBorder" to="BallSpawner" method="_on_leave_arena"]
+[connection signal="body_entered" from="RightBorder" to="Player1" method="_on_score"]
+[connection signal="body_entered" from="RightBorder" to="BallSpawner" method="_on_leave_arena"]
